@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" 
+    android:background="@drawable/palette_back_1"
+    >
+
+    <ScrollView
+        android:id="@+id/avatar_parts_scroll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/relativeLayout1"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="left"
+        android:background="#FFF"
+         >
+
+        <LinearLayout
+            android:id="@+id/avatar_parts_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:background="#E2E2E2" >
+
+        <ImageView
+            android:id="@+id/face_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:contentDescription="@string/change_face"
+            android:src="@drawable/face_button" />
+
+        <ImageView
+            android:id="@+id/hair_icon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:clickable="true"
+            android:contentDescription="@string/change_hair"
+            android:src="@drawable/hair_button" />
+
+        <ImageView
+            android:id="@+id/body_icon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="15dp"
+            android:clickable="true"
+            android:contentDescription="@string/change_body"
+            android:src="@drawable/body_button" />
+    </RelativeLayout>
+	<RelativeLayout 
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="133dp"
+        android:layout_alignBottom="@+id/avatar_parts_scroll"
+	    
+	    >
+    
+     <com.ver1.avacha.DrawingPanel
+         android:id="@+id/msurface"
+         android:layout_width="120dp"
+         android:layout_height="250dp"
+         android:layout_centerInParent="true" />
+
+     <Button
+         android:id="@+id/btn_submit"
+         style="@style/questionButton"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_centerHorizontal="true"
+         android:text="@string/submit_clothing" />
+
+	</RelativeLayout>
+</RelativeLayout>

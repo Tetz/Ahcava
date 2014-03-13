@@ -1,0 +1,281 @@
+<?php
+// The onConnect functions
+function insert_hash($my_hash){
+  mysql_query("INSERT INTO rooms (from_uuid) VALUES (\"$my_hash\")");
+
+}
+
+// Matching Between Connection ID and UUID.
+function insert_connection_uuid($connection_id, $uuid){
+  $the_same_exist_query = mysql_query("SELECT COUNT(*) FROM connection_uuid WHERE uuid=\"$uuid\"");
+  $the_same_exist = mysql_fetch_array($the_same_exist_query);
+  if($the_same_exist[0] == 0){
+    mysql_query("INSERT INTO connection_uuid (connection_id, uuid) VALUES (\"$connection_id\", \"$uuid\")");
+  }else if($the_same_exist[0] > 0){
+    mysql_query("UPDATE connection_uuid SET connection_id=\"$connection_id\" WHERE uuid=\"$uuid\"");
+  }
+}
+
+// INSERT NAME
+function insert_user_name($uuid){
+  $the_same_exist_query = mysql_query("SELECT COUNT(*) FROM user_name WHERE uuid=\"$uuid\"");
+  $the_same_exist = mysql_fetch_array($the_same_exist_query);
+  if($the_same_exist[0] == 0){
+    mysql_query("INSERT INTO user_name (uuid) VALUES (\"$uuid\")");
+  }
+}
+
+// Login & Logout
+function login($uuid){
+  mysql_query("UPDATE connection_uuid SET login_flag=true WHERE uuid=\"$uuid\"");
+}
+
+function logout($connection_id){
+  $get_uuid_query = mysql_query("SELECT uuid FROM connection_uuid WHERE connection_id=\"$connection_id\"");  
+  $get_uuid = mysql_fetch_array($get_uuid_query);
+  $uuid = $get_uuid[0];
+  mysql_query("UPDATE connection_uuid SET login_flag=false WHERE uuid=\"$uuid\"");
+}
+
+// SELECT Current to_uuid
+function select_to_uuid($uuid){
+  $select_to_uuid_query = mysql_query("SELECT to_uuid FROM connection_uuid WHERE uuid=\"$uuid\"");
+  $select_to_uuid_array = mysql_fetch_array($select_to_uuid_query);
+  $to_uuid = $select_to_uuid_array[0];
+  return $to_uuid;
+}
+
+// INSERT to_uuid
+function insert_to_uuid($uuid){
+  $to_uuid_query = mysql_query("SELECT uuid from connection_uuid WHERE uuid!=\"$uuid\" and to_uuid=\"0\" and login_flag=true  ORDER BY RAND() LIMIT 1");
+  $to_uuid_array = mysql_fetch_array($to_uuid_query);
+  $to_uuid = $to_uuid_array[0];
+  print_r($to_uuid);
+  echo "\n";
+  if(!empty($to_uuid)){
+    mysql_query("UPDATE connection_uuid SET to_uuid=\"$to_uuid\" WHERE uuid=\"$uuid\" and login_flag=true");
+    mysql_query("UPDATE connection_uuid SET to_uuid=\"$uuid\" WHERE uuid=\"$to_uuid\" and login_flag=true");
+  } 
+}
+
+// Reset her to_uuid
+function reset_her_to_uuid($uuid){
+  mysql_query("UPDATE connection_uuid SET to_uuid=0 WHERE to_uuid=\"$uuid\"");
+}
+
+// Reset my to_uuid
+function reset_my_to_uuid($uuid){
+  mysql_query("UPDATE connection_uuid SET to_uuid=0 WHERE uuid=\"$uuid\"");
+}
+
+// Get Connection ID
+function get_connections($uuid){
+  $to_connection_id_query = mysql_query("SELECT connection_id FROM connection_uuid WHERE to_uuid=\"$uuid\"");
+  $to_connection_id_array = mysql_fetch_array($to_connection_id_query);
+  $to_connection_id = $to_connection_id_array[0];
+  return $to_connection_id;
+}
+
+// Counter of Good Action
+function update_action($uuid){
+  $get_to_uuid_query = mysql_query("SELECT to_uuid FROM connection_uuid WHERE uuid=\"$uuid\"");
+  $get_to_uuid_array = mysql_fetch_array($get_to_uuid_query);
+  $to_uuid = $get_to_uuid_array[0];
+
+  $get_to_login_flag_query = mysql_query("SELECT login_flag FROM connection_uuid WHERE uuid=\"$to_uuid\"");
+  $get_to_login_flag_array = mysql_fetch_array($get_to_login_flag_query);
+  $to_login_flag = $get_to_login_flag_array[0];
+
+  mysql_query("UPDATE connection_uuid SET good_count=good_count+1 WHERE uuid=\"$to_uuid\"");
+}
+
+// Get the number of actions
+function get_good_data($uuid){
+  $good_count_query = mysql_query("SELECT good_count FROM connection_uuid WHERE to_uuid=\"$uuid\"");
+  $good_count = mysql_fetch_array($good_count_query);
+  return $good_count[0];
+}
+
+// Get My Name
+function get_my_name($uuid){
+  $get_my_name_query = mysql_query("SELECT name FROM user_name WHERE uuid=\"$uuid\"");
+  $get_my_name_array = mysql_fetch_array($get_my_name_query);
+  $my_name = $get_my_name_array[0];
+  return $my_name;
+}
+
+// Get Her Name 
+function get_her_name($uuid){
+  $select_to_uuid_query = mysql_query("SELECT to_uuid FROM connection_uuid WHERE uuid=\"$uuid\"");
+  $select_to_uuid_array = mysql_fetch_array($select_to_uuid_query);
+  $to_uuid = $select_to_uuid_array[0];
+  $get_her_name_query = mysql_query("SELECT name FROM user_name WHERE uuid=\"$to_uuid\"");
+  $get_her_name_array = mysql_fetch_array($get_her_name_query);
+  $her_name = $get_her_name_array[0];
+  return $her_name;
+ 
+}
+
+// Functions For NameHandler ----------------------------------------------------------------------------------
+function update_my_name($name,$uuid){
+  mysql_query("UPDATE user_name SET name=\"$name\" WHERE uuid=\"$uuid\" ");
+}
+
+//ユーザの作成----------------------------------------------------------------------------------
+function get_uuid_cnt($uuid){
+  $uuid_cnt_id = mysql_query("SELECT COUNT(*) FROM users WHERE uuid=\"$uuid\"");
+  $uuid_cnt = mysql_fetch_array($uuid_cnt_id);
+  return $uuid_cnt[0];
+}
+
+
+function get_room_id($uuid){
+  $room_id_query = mysql_query("SELECT room_id FROM users WHERE uuid=\"$uuid\"");
+  $room_id = mysql_fetch_array($room_id_query);
+  return $room_id[0]; 
+}
+
+ 
+function update_user_updated_at($uuid){   
+  mysql_query("UPDATE users SET updated_at=NOW() WHERE uuid=\"$uuid\"");
+}
+
+   
+//チャット相手がいない(usersのroom_id = 0)------------------------------------------------------
+//相手を見つけるSQL
+function get_match_user($uuid){ 
+  $match_user_resource = mysql_query("SELECT uuid FROM users WHERE uuid!=\"$uuid\" AND room_id=0 AND updated_at BETWEEN now()-interval 5 second AND now() ORDER BY updated_at DESC");
+  $match_user = mysql_fetch_array($match_user_resource);
+  return $match_user[0];
+}
+
+function insert_room($uuid, $match_user){
+  mysql_query("INSERT INTO Rooms (from_uuid, to_uuid) VALUES (\"$uuid\", \"$match_user\")");
+}
+
+//2人のユーザに同じroom_idを振り分ける
+function set_room_id($uuid, $match_user){
+  $last_insert_id_query = mysql_query("select last_insert_id()");
+  $last_insert_id = mysql_fetch_array($last_insert_id_query);
+  mysql_query("UPDATE users SET room_id=\"$last_insert_id[0]\" WHERE uuid=\"$uuid\"");
+  mysql_query("UPDATE users SET room_id=\"$last_insert_id[0]\" WHERE uuid=\"$match_user\"");
+}
+
+//前の相手のroom_idを0にする
+function zero_room_id($uuid){
+  $room_id_query = mysql_query("SELECT room_id FROM users WHERE uuid=\"$uuid\"");
+  $room_id = mysql_fetch_array($room_id_query);
+  if($room_id[0] != 0){//デフォルトのroom_idである0は除く
+    mysql_query("UPDATE users SET room_id=0 WHERE uuid!=\"$uuid\" AND room_id=\"$room_id[0]\"");
+  }
+}
+
+//usersにroom_idが割り振られている---------------------------------------------------------------
+
+//ルームのアップデート
+function update_room_updated_at($room_id){
+mysql_query("UPDATE Rooms SET updated_at=now() WHERE id=\"$room_id\"");
+
+}
+
+//一定時間使われてないチャットルームを取り消す
+function cancel_room_id(){
+  $room_id_query = mysql_query("SELECT room_id FROM users WHERE uuid=\"$uuid\"");
+  $room_id = mysql_fetch_array($room_id_query);
+  $break_room_query = mysql_query("SELECT users.room_id FROM users INNER JOIN Rooms ON users.room_id=Rooms.id WHERE users.room_id=\"$room_id[0]\" AND Rooms.updated_at NOT BETWEEN  now()-interval 30 second AND now() GROUP BY users.room_id");
+  $break_room = mysql_fetch_array($break_room_query);
+  mysql_query("UPDATE users SET room_id=0 WHERE room_id=\"$break_room[0]\"");
+  $room_id = mysql_fetch_array($room_id_query);
+  mysql_query("UPDATE Rooms SET updated_at=NOW() WHERE id=\"$room_id[0]\"");
+}
+
+//Messagesテーブルに値を代入
+function insert_message($uuid, $match_user, $room_id, $message, $action){
+  $to_uuid_query = mysql_query("SELECT uuid FROM users WHERE uuid!=\"$uuid\" AND room_id=\"$room_id\"");
+  $to_uuid = mysql_fetch_array($to_uuid_query);
+  mysql_query("INSERT INTO Messages (from_uuid, to_uuid, room_id, message) VALUES (\"$uuid\",\"$to_uuid[0]\", \"$room_id\", \"$message\")");
+}
+
+//TODO
+function insert_avatar_image_name($uuid, $hair, $face, $body){
+  mysql_query("INSERT INTO avatar_images (uuid, hair, face, body) VALUES (\"$uuid\",\"$hair\",\"$face\",\"$body\")");
+}
+
+//アクションのデータ
+
+//アクションデータをリセット
+function reset_action($uuid, $room_id){
+   mysql_query("UPDATE Messages SET action=\"nothing\" WHERE to_uuid=\"$uuid\" AND room_id=\"$room_id\" ORDER BY id DESC LIMIT 1");
+}
+
+//相手のUUIDを取得
+function get_to_uuid($uuid, $room_id){
+  $to_uuid_query = mysql_query("SELECT uuid FROM users WHERE uuid!=\"$uuid\" AND room_id=\"$room_id\"");
+  $to_uuid = mysql_fetch_array($to_uuid_query);
+  return $to_uuid[0];
+} 
+
+//アンドロイド端末側への送信用データ取得---------------------------------------------------------
+//メッセージを取得
+//自分のメッセージ
+function get_my_message($uuid, $room_id){
+  $my_message_query = mysql_query("SELECT message FROM Messages WHERE room_id=\"$room_id\" AND from_uuid=\"$uuid\" ORDER BY created_at DESC");
+  $my_message = mysql_fetch_array($my_message_query);
+  return $my_message[0];
+}
+//相手のメッセージ
+function get_data_message($uuid, $room_id){
+  $get_message_query = mysql_query("SELECT message FROM Messages WHERE room_id=\"$room_id\" AND to_uuid=\"$uuid\" ORDER BY created_at DESC");
+  $get_message = mysql_fetch_array($get_message_query);
+  return $get_message[0];
+}
+//アクション情報を取得
+function get_data_action($uuid){
+  $get_action_query = mysql_query("SELECT action FROM Messages WHERE to_uuid=\"$uuid\" ORDER BY id DESC ");
+  $get_action = mysql_fetch_array($get_action_query);
+  return $get_action[0];
+}
+//ログイン情報を取得
+function get_data_login($to_uuid){
+  $get_login_query = mysql_query("SELECT COUNT(*) FROM users WHERE uuid=\"$to_uuid\" AND updated_at BETWEEN now()-interval 5 second AND now()+1");
+  $get_login = mysql_fetch_array($get_login_query);
+  return $get_login[0];
+}
+//アバター情報を取得
+function get_avatar_data($to_uuid){
+  $avatar_query = mysql_query("SELECT sex FROM users WHERE uuid=\"$to_uuid\"");  
+  $avatar = mysql_fetch_array($avatar_query);
+  return $avatar[0];
+}
+//Get Image Names of the partner
+function get_hair($to_uuid){
+  $hair_query = mysql_query("SELECT hair FROM avatar_images WHERE uuid=\"$to_uuid\" ORDER BY created_at DESC LIMIT 1");
+  $hair = mysql_fetch_array($hair_query);
+  return $hair[0];
+}
+
+function get_face($to_uuid){
+  $face_query = mysql_query("SELECT face FROM avatar_images WHERE uuid=\"$to_uuid\" ORDER BY created_at DESC LIMIT 1");
+  $face = mysql_fetch_array($face_query);
+  return $face[0];
+}
+function get_body($to_uuid){
+  $body_query = mysql_query("SELECT body FROM avatar_images WHERE uuid=\"$to_uuid\" ORDER BY created_at DESC LIMIT 1");
+  $body = mysql_fetch_array($body_query);
+  return $body[0];
+}
+
+
+
+//デバッグ用のファイル書き込み
+function write_log($log){
+  $filepath = "php_log.txt";  
+  $fp = fopen($filepath, "r+");
+  @fwrite($fp,$log);	    
+  fclose($fp);
+}
+
+//DBの接続を閉じる
+//mysql_close($con);
+
+?>

@@ -1,0 +1,11 @@
+		// client = AndroidHttpClient.newInstance("Android UserAgent");
+		// HttpResponse res = (HttpResponse) client.execute(new HttpGet(params[0]));
+		//
+		// String result = "test";
+		// return result;
+		// } catch (Exception e) {
+		// e.getStackTrace();
+		// return "";
+		// } finally {
+		// client.close();
+		// }

@@ -1,0 +1,204 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_relative"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_3" >
+
+    <ScrollView
+        android:id="@+id/right_messages_scroll"
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="290dp"
+        android:layout_marginRight="15dp" >
+
+        <LinearLayout
+            android:id="@+id/right_messages_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:orientation="vertical" >
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/left_messages_scroll"
+        android:layout_width="150dp"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="290dp"
+        android:layout_marginLeft="15dp" >
+
+        <LinearLayout
+            android:id="@+id/left_messages_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/left_dummy_linear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/my_message"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/her_message"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/textview_border" />
+
+    <TextView
+        android:id="@+id/her_message"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/chat_her_surface"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="-25dp"
+        android:background="@drawable/textview_border" />
+
+    <com.ver1.avacha.MyChatDrawingPanel
+        android:id="@+id/chat_my_surface"
+        android:layout_width="120dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="60dp"
+        android:layout_marginLeft="50dp"
+        android:contentDescription="@string/chat_my_surface" />
+
+    <ImageButton
+        android:id="@+id/my_ok_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/chat_my_surface"
+        android:layout_alignTop="@+id/chat_my_surface"
+        android:layout_marginTop="-30dp"
+        android:background="#00000000"
+        android:contentDescription="@string/ok_action"
+        android:src="@drawable/good"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/change_button"
+        style="@style/questionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/change_button"
+        android:textColor="#FFFFFF" />
+
+    <ImageButton
+        android:id="@+id/her_ok_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/chat_her_surface"
+        android:layout_alignTop="@+id/chat_her_surface"
+        android:layout_marginTop="-30dp"
+        android:background="#00000000"
+        android:contentDescription="@string/ok_action"
+        android:src="@drawable/good" />
+
+    <EditText
+        android:id="@+id/random_chat_message"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/custom_edit_text"
+        android:ems="10"
+        android:inputType="text"
+        android:padding="4dp" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/send"
+        style="@style/questionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:onClick="send"
+        android:text="@string/send"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/good_button"
+        style="@style/questionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:onClick="good"
+        android:text="@string/good_button"
+        android:textColor="#FFFFFF" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/g_count_view" >
+
+        <!--
+        <ImageButton
+            android:id="@+id/good_finger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:contentDescription="@string/good_finger"
+            android:padding="5dp"
+            android:src="@drawable/good_finger" />
+        -->
+
+        <TextView
+            android:id="@+id/good_count"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/good_count"
+            android:layout_toRightOf="@+id/good_count"
+            android:paddingBottom="10dp"
+            android:paddingRight="10dp"
+            android:text="pt"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </RelativeLayout>
+
+    <com.ver1.avacha.HerChatDrawingPanel
+        android:id="@+id/chat_her_surface"
+        android:layout_width="120dp"
+        android:layout_height="200dp"
+        android:layout_alignBaseline="@+id/chat_my_surface"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="60dp"
+        android:layout_marginRight="35dp"
+        android:contentDescription="@string/chat_her_surface" />
+
+
+
+</RelativeLayout>

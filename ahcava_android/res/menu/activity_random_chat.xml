@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/chat_log"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/chat_log"/>
+    
+    <item
+        android:id="@+id/change_name"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/change_name"/>
+    
+        <item
+        android:id="@+id/official_web"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/official_web"/>
+
+</menu>

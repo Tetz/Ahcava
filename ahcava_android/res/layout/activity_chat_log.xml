@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0ffda"
+    tools:context=".ChatLogActivity" >
+    
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="318dp" />
+           <Button
+               android:id="@+id/back"
+               style="@style/questionButton"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@android:id/list"
+               android:layout_centerHorizontal="true"
+               android:layout_marginTop="38dp"
+               android:text="@string/back" />
+
+</RelativeLayout>

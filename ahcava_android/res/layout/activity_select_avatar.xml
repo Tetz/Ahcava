@@ -1,0 +1,59 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/background_2"
+    >
+
+    <com.ver1.avacha.RightDefaultDrawingPanel
+        android:id="@+id/default_right_surface"
+        position="right"
+        android:layout_width="120dp"
+        android:layout_height="200dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="25dp"
+        android:contentDescription="@string/default_right_surface"
+        android:padding="1dp" />
+    
+    
+    <com.ver1.avacha.LeftDefaultDrawingPanel
+        android:id="@+id/default_left_surface"
+        android:layout_width="120dp"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="26dp"
+        android:contentDescription="@string/default_left_surface"
+        android:padding="1dp" />
+     
+
+    <ImageButton
+        android:id="@+id/comment_woman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/default_right_surface"
+        android:layout_alignLeft="@+id/default_right_surface"
+        android:adjustViewBounds="true"
+        android:background="#00000000"
+        android:contentDescription="@string/comment_woman"
+        android:maxWidth="100dp"
+        android:padding="1dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/select_avatar_t4_woman" />
+
+    <ImageButton
+        android:id="@+id/comment_man"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/default_right_surface"
+        android:layout_alignLeft="@+id/default_left_surface"
+        android:adjustViewBounds="true"
+        android:background="#00000000"
+        android:contentDescription="@string/comment_man"
+        android:maxWidth="100dp"
+        android:padding="1dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/select_avatar_t4_man" />
+
+</RelativeLayout>

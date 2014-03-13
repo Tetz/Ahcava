@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ver1.avacha"
+    android:versionCode="5"
+    android:versionName="1.05" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="17" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:name="com.ver1.avacha.MyApplication"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme" >
+        <service android:name="com.parse.PushService" />
+        <receiver
+            android:name="com.parse.ParseBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="com.parse.starter.UPDATE_STATUS"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.ver1.avacha.MyCustomReceiver" >
+            <intent-filter>
+				<action android:name="com.ver1.avacha.UPDATE_STATUS"/>           
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.ver1.avacha.SelectAvatarActivity"
+            android:label="@string/title_activity_select_avatar" 
+            android:screenOrientation="portrait"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.ver1.avacha.RandomChatActivity"
+            android:label="@string/title_activity_random_chat"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
+        </activity>
+        <activity
+            android:name="com.ver1.avacha.DressUpActivity"
+            android:label="@string/title_activity_dress_up"
+            android:screenOrientation="portrait"
+             >
+        </activity>
+        <activity
+            android:name="com.ver1.avacha.DressUpGirlActivity"
+            android:label="@string/title_activity_dress_up_girl"
+            android:screenOrientation="portrait"
+             >
+        </activity>
+        <activity
+            android:name="com.ver1.avacha.PaletteActivity"
+            android:label="@string/title_activity_palette"
+            android:screenOrientation="portrait"
+             >
+        </activity>
+        <activity
+            android:name="com.ver1.avacha.WebsocketActivity"
+            android:label="@string/title_activity_websocket"
+            android:screenOrientation="portrait"
+             >
+        </activity>
+        <activity
+            android:name="com.ver1.avacha.ChatLogActivity"
+            android:label="@string/title_activity_chat_log" 
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity
+            android:name="com.ver1.avacha.NameActivity"
+            android:label="@string/title_activity_name"
+            android:screenOrientation="portrait"
+             >
+        </activity>
+    </application>
+
+</manifest>

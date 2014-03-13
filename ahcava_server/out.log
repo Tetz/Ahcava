@@ -1,0 +1,93 @@
+2013-03-19 18:57:30 | PHP WebSocket Server
+2013-03-19 18:57:30 | ========================================
+2013-03-19 18:57:30 | Server Started : 2013-03-19 18:57:30
+2013-03-19 18:57:30 | Listening on   : tcp://49.212.196.168:9000
+2013-03-19 18:57:30 | ========================================
+2013-03-19 19:05:09 | Socket accepted
+2013-03-19 19:05:09 | HYBI Response SENT!
+[DEMO] 14 connected 
+2013-03-19 20:14:58 | Socket accepted
+2013-03-19 20:14:58 | HYBI Response SENT!
+[DEMO] 15 connected 
+[DEMO] 15 disconnected 
+2013-03-19 20:15:21 | Socket accepted
+2013-03-19 20:15:21 | HYBI Response SENT!
+[DEMO] 16 connected 
+2013-03-21 17:41:30 | Socket accepted
+2013-03-21 17:41:30 | HYBI Response SENT!
+[DEMO] 17 connected 
+[DEMO] 17 disconnected 
+2013-03-21 19:44:09 | Socket accepted
+2013-03-21 19:44:09 | HYBI Response SENT!
+[DEMO] 18 connected 
+2013-03-22 10:06:27 | Socket accepted
+2013-03-22 10:06:27 | HYBI Response SENT!
+[DEMO] 19 connected 
+2013-03-22 11:44:38 | Socket accepted
+2013-03-22 11:44:38 | HYBI Response SENT!
+[DEMO] 20 connected 
+2013-03-22 11:56:23 | dispatchMessage
+2013-03-22 11:56:27 | dispatchMessage
+2013-03-22 11:56:28 | dispatchMessage
+2013-03-22 11:56:57 | dispatchMessage
+2013-03-22 11:56:58 | dispatchMessage
+2013-03-22 11:56:58 | dispatchMessage
+2013-03-22 11:56:58 | dispatchMessage
+2013-03-22 11:56:59 | dispatchMessage
+2013-03-22 11:57:04 | dispatchMessage
+2013-03-22 11:57:05 | dispatchMessage
+2013-03-22 11:57:05 | dispatchMessage
+2013-03-22 11:57:07 | dispatchMessage
+2013-03-22 11:57:08 | dispatchMessage
+2013-03-22 11:57:10 | dispatchMessage
+2013-03-22 11:57:10 | dispatchMessage
+2013-03-22 11:57:10 | dispatchMessage
+2013-03-22 11:57:10 | dispatchMessage
+2013-03-22 11:57:28 | dispatchMessage
+2013-03-22 11:57:31 | dispatchMessage
+2013-03-22 11:59:04 | dispatchMessage
+2013-03-22 12:04:09 | dispatchMessage
+2013-03-22 12:04:09 | dispatchMessage
+2013-03-22 12:04:10 | dispatchMessage
+2013-03-22 13:08:01 | Socket accepted
+2013-03-22 13:08:01 | HYBI Response SENT!
+[DEMO] 21 connected 
+2013-03-22 13:08:23 | dispatchMessage
+2013-03-22 13:08:24 | dispatchMessage
+2013-03-22 13:08:25 | dispatchMessage
+2013-03-22 13:08:26 | dispatchMessage
+2013-03-22 13:08:26 | dispatchMessage
+2013-03-22 13:08:26 | dispatchMessage
+2013-03-22 13:08:27 | dispatchMessage
+2013-03-22 13:08:27 | dispatchMessage
+2013-03-22 13:08:27 | dispatchMessage
+2013-03-22 13:08:28 | dispatchMessage
+2013-03-22 13:12:58 | dispatchMessage
+2013-03-22 13:13:51 | dispatchMessage
+2013-03-22 13:13:52 | dispatchMessage
+2013-03-22 13:13:54 | dispatchMessage
+2013-03-22 14:56:56 | Socket accepted
+2013-03-22 14:56:56 | HYBI Response SENT!
+[DEMO] 22 connected 
+2013-03-22 14:57:06 | dispatchMessage
+2013-03-22 14:57:07 | dispatchMessage
+2013-03-22 14:57:09 | dispatchMessage
+2013-03-22 14:57:12 | dispatchMessage
+2013-03-22 14:57:36 | dispatchMessage
+2013-03-22 14:57:36 | dispatchMessage
+2013-03-22 14:57:37 | dispatchMessage
+2013-03-22 14:57:38 | dispatchMessage
+2013-03-22 14:57:38 | dispatchMessage
+2013-03-22 14:57:38 | dispatchMessage
+2013-03-22 14:57:39 | dispatchMessage
+2013-03-22 14:57:39 | dispatchMessage
+2013-03-22 14:57:39 | dispatchMessage
+2013-03-22 14:57:39 | dispatchMessage
+2013-03-22 14:57:39 | dispatchMessage
+2013-03-22 14:57:40 | dispatchMessage
+2013-03-22 14:57:40 | dispatchMessage
+2013-03-22 14:57:40 | dispatchMessage
+2013-03-22 14:57:40 | dispatchMessage
+2013-03-22 14:57:40 | dispatchMessage
+2013-03-22 14:57:40 | dispatchMessage
+2013-03-22 14:57:41 | dispatchMessage
