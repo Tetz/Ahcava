@@ -12,8 +12,8 @@ Function Push($channel){
     $title = 'アカバ！';
     $alert = '誰かがあなたを呼んでいます。';
 
-    $APPLICATION_ID = "zHaC9bMjdv5IRwpnOn5Y9EAd5iGun5Muv8zMJDgQ";
-    $REST_API_KEY = "B9jcMzkTyQIA53sPXINnSk0WHNpM0pvxVW8tkzC1";
+    $APPLICATION_ID = "fafeafeaefafea";
+    $REST_API_KEY = "bafsaefaveafeaw";
 
     $url = 'https://api.parse.com/1/push';
 
